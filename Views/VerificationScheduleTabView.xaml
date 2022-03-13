@@ -1,0 +1,156 @@
+﻿<UserControl x:Class="Metrology.Views.VerificationScheduleTabView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Metrology.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="1200" Background="White">
+    <Grid>
+        <Grid.Resources>
+            <ResourceDictionary>
+            </ResourceDictionary>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" HorizontalAlignment="Center" Orientation="Horizontal">
+            <StackPanel Margin="15" Orientation="Vertical" Width="100">
+                <TextBlock HorizontalAlignment="Center" Text="С"/>
+                <DatePicker />
+            </StackPanel>
+            <StackPanel Margin="15" Orientation="Vertical"  Width="100">
+                <TextBlock HorizontalAlignment="Center" Text="По"/>
+                <DatePicker />
+            </StackPanel>
+            <StackPanel Margin="15" Orientation="Vertical"  Width="120">
+                <TextBlock HorizontalAlignment="Center" Text="Прибор"/>
+                <ComboBox />
+            </StackPanel>
+        </StackPanel>
+
+        <DataGrid RowHeight="35" 
+                  Grid.Row="1"
+                  AutoGenerateColumns="False"
+                  SelectionMode="Single"
+                  SelectionUnit="FullRow"
+                  IsSynchronizedWithCurrentItem="True">
+
+            
+            <DataGrid.Columns>
+        <DataGridTemplateColumn Width="*">
+            <DataGridTemplateColumn.Header>
+                <TextBlock Text = "ID" TextWrapping="Wrap" HorizontalAlignment="Center" ></TextBlock>
+            </DataGridTemplateColumn.Header>
+            <DataGridTemplateColumn.CellTemplate>
+                <DataTemplate >
+                    <StackPanel Orientation="Horizontal">
+                            <TextBlock  HorizontalAlignment="Center"
+                                        Text="No"/>
+                        </StackPanel>
+                </DataTemplate>
+            </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn >
+                <DataGridTemplateColumn Width="*">
+                <DataGridTemplateColumn.Header>
+                    <TextBlock Text = "Наименование, тип, номер" TextWrapping="Wrap" HorizontalAlignment="Center" ></TextBlock>
+                </DataGridTemplateColumn.Header>
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate >
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock  HorizontalAlignment="Center"
+                                        Text="No"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Width="*">
+                <DataGridTemplateColumn.Header>
+                    <TextBlock Text = "Класс точности, погрешность" TextWrapping="Wrap" HorizontalAlignment="Center" ></TextBlock>
+                </DataGridTemplateColumn.Header>
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate >
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock  HorizontalAlignment="Center"
+                                        Text="No"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Width="*">
+                    <DataGridTemplateColumn.Header>
+                        <TextBlock Text = "Кол-во" TextWrapping="Wrap" HorizontalAlignment="Center" ></TextBlock>
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate >
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock  HorizontalAlignment="Center"
+                                        Text="No"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Width="*">
+                    <DataGridTemplateColumn.Header>
+                        <TextBlock Text = "Номер СИ в гос. реестре" TextWrapping="Wrap" HorizontalAlignment="Center" ></TextBlock>
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate >
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock  HorizontalAlignment="Center"
+                                        Text="No"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Width="*">
+                    <DataGridTemplateColumn.Header>
+                        <TextBlock Text = "Поверяющая организация" TextWrapping="Wrap" HorizontalAlignment="Center" ></TextBlock>
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate >
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock  HorizontalAlignment="Center"
+                                        Text="No"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Width="*">
+                    <DataGridTemplateColumn.Header>
+                        <TextBlock Text = "Сроки проведения поверки" TextWrapping="Wrap" HorizontalAlignment="Center" ></TextBlock>
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate >
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock  HorizontalAlignment="Center"
+                                        Text="No"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Width="*">
+                    <DataGridTemplateColumn.Header>
+                        <TextBlock Text = "Сфера гос. регулирования" TextWrapping="Wrap" HorizontalAlignment="Center" ></TextBlock>
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate >
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock  HorizontalAlignment="Center"
+                                        Text="No"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

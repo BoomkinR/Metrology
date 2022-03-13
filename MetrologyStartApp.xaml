@@ -1,0 +1,27 @@
+﻿<Window x:Class="Metrology.MetrologyStartApp"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Metrology"
+        xmlns:views ="clr-namespace:Metrology.Views"
+        xmlns:viewModel="clr-namespace:Metrology.ViewModels"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance viewModel:Layout}"
+        Title="MainWindow" Height="720" Width="1080">
+    <Grid>
+        <TabControl TabStripPlacement="Top">
+            <TabItem DataContext="{Binding Path=personalAreaTabViewModel}" Header="Административная Панель">
+                <views:PersonalAreaTabView />
+            </TabItem>
+            <TabItem DataContext="{Binding Path= instrumentViewModel}" Header="Средства измерения">
+                <views:InstrumentTabItem/>
+            </TabItem>
+            <TabItem Header="Граффик поверки">
+                <views:VerificationScheduleTabView/>
+            </TabItem>
+            <TabItem Header="Ремонтный граффик">               
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
