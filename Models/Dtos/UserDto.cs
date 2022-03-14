@@ -14,8 +14,7 @@ namespace Metrology.Models.Dtos
         public DateTime BirthDay { get; set; }
         public DateTime RegistrationDate { get; set;}
         public string Phone { get; set; }
-        public string Login { get; set; }
-        public string Password { get; set; }
         public Role Role { get; set; }
+        public string FullName { get => Surname + " " + Name + " " + PatrName; }
     }
 }

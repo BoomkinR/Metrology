@@ -106,7 +106,7 @@ namespace Metrology.ViewModels
 
         private void OnHandOver()
         {
-            
+            _windowService.ShowHandOverModalView(SelectedDevice);
         }
 
         private void OnAddDevice() 

@@ -2,6 +2,7 @@
 using Metrology;
 using System.Windows;
 using Metrology.Views;
+using Metrology.Models.Dtos;
 
 namespace Metrology.Services
 {
@@ -31,9 +32,11 @@ namespace Metrology.Services
             view.ShowDialog();
         }
 
-        public void ShowHandOverModalView()
+        public void ShowHandOverModalView(DeviceDto deviceToTransfer)
         {
-
+            var viewModel = new HandoverViewModel(deviceToTransfer);
+            var view = new HandOverModalView() { DataContext = viewModel };
+            view.ShowDialog();
         }
 
     }

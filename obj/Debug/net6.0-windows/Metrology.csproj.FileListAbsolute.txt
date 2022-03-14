@@ -137,4 +137,6 @@ D:\Metrology\Metrology\obj\Debug\net6.0-windows\Views\AddRoleView.baml
 D:\Metrology\Metrology\bin\Debug\net6.0-windows\Microsoft.Extensions.Configuration.dll
 D:\Metrology\Metrology\obj\Debug\net6.0-windows\Views\AddDeviceModalView.g.cs
 D:\Metrology\Metrology\obj\Debug\net6.0-windows\Views\AddDeviceModalView.baml
+D:\Metrology\Metrology\obj\Debug\net6.0-windows\Views\HandOverModalView.g.cs
+D:\Metrology\Metrology\obj\Debug\net6.0-windows\Views\HandOverModalView.baml
 D:\Metrology\Metrology\obj\Debug\net6.0-windows\Metrology.csproj.AssemblyReference.cache

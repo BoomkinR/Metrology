@@ -32,6 +32,8 @@ namespace Metrology.Models
         public Location Location { get; set; }
         [Column("PRESENCE_STATUS")]
         public PresenceStatus Status { get; set; }
+        [Column("OWNER_USER")]
+        public User OwnerUser { get; set; }
 
     }
 }

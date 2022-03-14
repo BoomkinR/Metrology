@@ -17,6 +17,9 @@
     <Compile Update="Views\Authorization.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\HandOverModalView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\VerificationScheduleTabView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -32,6 +35,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Authorization.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\HandOverModalView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\VerificationScheduleTabView.xaml">

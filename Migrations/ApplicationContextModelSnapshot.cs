@@ -23,6 +23,35 @@ namespace Metrology.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("Metrology.Models.Contractor", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
+
+                    b.Property<string>("ContactClient")
+                        .HasColumnType("text")
+                        .HasColumnName("CONTACT_CLIENT");
+
+                    b.Property<string>("ContactNumper")
+                        .HasColumnType("text")
+                        .HasColumnName("CONTACT_NUMBER");
+
+                    b.Property<string>("Inn")
+                        .HasColumnType("text")
+                        .HasColumnName("INN");
+
+                    b.Property<string>("OrganisationName")
+                        .HasColumnType("text")
+                        .HasColumnName("ORGANISATION_NAME");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("contractors", "metrology");
+                });
+
             modelBuilder.Entity("Metrology.Models.Device", b =>
                 {
                     b.Property<int>("Id")
@@ -47,8 +76,12 @@ namespace Metrology.Migrations
                         .HasColumnType("integer");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("NAME");
+
+                    b.Property<int?>("OwnerUserID")
+                        .HasColumnType("integer");
 
                     b.Property<string>("SerialNumber")
                         .HasColumnType("text")
@@ -57,12 +90,14 @@ namespace Metrology.Migrations
                     b.Property<int?>("StatusId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("TypeID")
+                    b.Property<int>("TypeID")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
 
                     b.HasIndex("LocationID");
+
+                    b.HasIndex("OwnerUserID");
 
                     b.HasIndex("StatusId");
 
@@ -227,6 +262,50 @@ namespace Metrology.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Metrology.Models.TransferLog", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
+
+                    b.Property<bool>("Accepted")
+                        .HasColumnType("boolean")
+                        .HasColumnName("ACCEPTED");
+
+                    b.Property<DateTime>("AcceptedDate")
+                        .HasColumnType("TIMESTAMP(0)")
+                        .HasColumnName("ACCEPTED_DATE");
+
+                    b.Property<int?>("DeviceId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Note")
+                        .HasColumnType("text")
+                        .HasColumnName("NOTE");
+
+                    b.Property<DateTime>("TransferDate")
+                        .HasColumnType("TIMESTAMP(0)")
+                        .HasColumnName("TRANSFER_DATE");
+
+                    b.Property<int?>("UserFromID")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("UserToID")
+                        .HasColumnType("integer");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("DeviceId");
+
+                    b.HasIndex("UserFromID");
+
+                    b.HasIndex("UserToID");
+
+                    b.ToTable("transfer_log", "metrology");
+                });
+
             modelBuilder.Entity("Metrology.Models.User", b =>
                 {
                     b.Property<int>("ID")
@@ -284,14 +363,14 @@ namespace Metrology.Migrations
                         new
                         {
                             ID = 1,
-                            BirthDay = new DateTime(2022, 2, 17, 22, 7, 7, 823, DateTimeKind.Local).AddTicks(4087),
+                            BirthDay = new DateTime(2022, 3, 13, 17, 14, 52, 77, DateTimeKind.Local).AddTicks(5554),
                             Email = "admin@admin.ru",
                             Login = "admin",
                             Name = "Admin",
                             Password = "�iv�A���M�߱g��s�K��o*�H�",
                             PatrName = "Adminov",
                             Phone = "88888888888",
-                            RegistrationDate = new DateTime(2022, 2, 17, 22, 7, 7, 823, DateTimeKind.Local).AddTicks(4094),
+                            RegistrationDate = new DateTime(2022, 3, 13, 17, 14, 52, 77, DateTimeKind.Local).AddTicks(5563),
                             Surname = "Adminovich"
                         });
                 });
@@ -302,15 +381,23 @@ namespace Metrology.Migrations
                         .WithMany()
                         .HasForeignKey("LocationID");
 
+                    b.HasOne("Metrology.Models.User", "OwnerUser")
+                        .WithMany()
+                        .HasForeignKey("OwnerUserID");
+
                     b.HasOne("Metrology.Models.PresenceStatus", "Status")
                         .WithMany()
                         .HasForeignKey("StatusId");
 
                     b.HasOne("Metrology.Models.DeviceType", "Type")
                         .WithMany()
-                        .HasForeignKey("TypeID");
+                        .HasForeignKey("TypeID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Location");
+
+                    b.Navigation("OwnerUser");
 
                     b.Navigation("Status");
 
@@ -326,18 +413,34 @@ namespace Metrology.Migrations
                     b.Navigation("LocationType");
                 });
 
+            modelBuilder.Entity("Metrology.Models.TransferLog", b =>
+                {
+                    b.HasOne("Metrology.Models.Device", "Device")
+                        .WithMany()
+                        .HasForeignKey("DeviceId");
+
+                    b.HasOne("Metrology.Models.User", "UserFrom")
+                        .WithMany()
+                        .HasForeignKey("UserFromID");
+
+                    b.HasOne("Metrology.Models.User", "UserTo")
+                        .WithMany()
+                        .HasForeignKey("UserToID");
+
+                    b.Navigation("Device");
+
+                    b.Navigation("UserFrom");
+
+                    b.Navigation("UserTo");
+                });
+
             modelBuilder.Entity("Metrology.Models.User", b =>
                 {
                     b.HasOne("Metrology.Models.Role", "Role")
-                        .WithMany("User")
+                        .WithMany()
                         .HasForeignKey("RoleId");
 
                     b.Navigation("Role");
-                });
-
-            modelBuilder.Entity("Metrology.Models.Role", b =>
-                {
-                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }

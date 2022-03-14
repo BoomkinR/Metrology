@@ -14,7 +14,10 @@ namespace Metrology.ViewModels
         public AddUserViewModel()
         {
             LoadRoles();
-            UserModel = new User();
+            UserModel = new User()
+            {
+                BirthDay = DateTime.Today.AddYears(-18)
+            };
         }
         private User _userModel { get; set; }
 

@@ -19,6 +19,7 @@ namespace Metrology.Models
         public DbSet<DeviceType> DeviceTypes { get; set; }
         public DbSet<Device> Devices { get; set; }
         public DbSet<Contractor> Contractor{ get; set; }
+        public DbSet<TransferLog> TransferLog { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseNpgsql("Server=192.168.226.131;Port=5432;Database=metrology;Username=madmin;Password=madmin; pooling=true; SearchPath=metrology");
@@ -92,6 +93,9 @@ namespace Metrology.Models
             modelBuilder.Entity<Device>().Property(x =>x.DateExplotationStart).HasColumnType("TIMESTAMP(0)").IsRequired();
             modelBuilder.Entity<Device>().Property(x =>x.DateExplotationEnd).HasColumnType("TIMESTAMP(0)").IsRequired();
 
+            //TransferLog
+            modelBuilder.Entity<TransferLog>().Property(x => x.TransferDate).HasColumnType("TIMESTAMP(0)").IsRequired();
+            modelBuilder.Entity<TransferLog>().Property(x => x.AcceptedDate).HasColumnType("TIMESTAMP(0)").IsRequired();
 
         }
     }

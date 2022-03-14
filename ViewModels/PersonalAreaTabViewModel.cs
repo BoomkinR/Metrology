@@ -1,32 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using Metrology.Annotations;
+﻿using System.Collections.Generic;
 using Metrology.Definitions;
 using Metrology.Models;
+using Metrology.Models.Dtos;
 using Metrology.Services;
-using Microsoft.EntityFrameworkCore;
+using Metrology.Services.ModelService;
 
 namespace Metrology.ViewModels
 {
     public class PersonalAreaTabViewModel:ViewModelInteraction
     {
+        UserService _userService = new UserService();
 
         public PersonalAreaTabViewModel()
         {
-            using ApplicationContext db = new ApplicationContext();
-            var mapService = new MapService();
-            Users = db.Users
-                .Include(u => u.Role).ToList();
+            UpdateUsersList();
         }
 
-        private IEnumerable<User> users;
-        public IEnumerable<User> Users
+        private IEnumerable<UserDto> users;
+        public IEnumerable<UserDto> Users
         {
             get => users;
             set
@@ -63,6 +54,12 @@ namespace Metrology.ViewModels
         {
             WindowService windowService = new WindowService();
             windowService.ShowAddUserView();
+            UpdateUsersList();
+        }
+
+        private void UpdateUsersList()
+        {
+            Users = new List<UserDto>(_userService.GetAllUsers());
         }
 
     }

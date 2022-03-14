@@ -12,21 +12,20 @@ namespace Metrology.Services
     public class MapService
     {
         private readonly DeviceService _deviceService = new DeviceService();
-        public User MapToUser(UserDto userDto)
+        
+        public UserDto MapToUserDto(User user)
         {
-            return new User
+            return new UserDto
             {
-                ID = userDto.ID,
-                Name = userDto.Name,
-                Surname = userDto.Surname,
-                PatrName = userDto.PatrName,
-                Email = userDto.Email,
-                BirthDay = userDto.BirthDay,
-                RegistrationDate = userDto.RegistrationDate,
-                Phone = userDto.Phone,
-                Login = userDto.Login,
-                Password = userDto.Password,
-                Role = userDto.Role
+                ID = user.ID,
+                Name = user.Name,
+                Surname = user.Surname,
+                PatrName = user.PatrName,
+                Email = user.Email,
+                BirthDay = user.BirthDay,
+                RegistrationDate = user.RegistrationDate,
+                Phone = user.Phone,
+                Role = user.Role
             };
         }
 

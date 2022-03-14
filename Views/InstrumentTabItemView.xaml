@@ -147,8 +147,9 @@
         <StackPanel Margin="0 40 0 0" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Vertical">
             <StackPanel Orientation="Horizontal">
                 <Button Style="{StaticResource ActionButton}" 
-                        Command="{Binding }"
-                        Visibility="{ Binding Path= IsHangOverAvailable, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"> Передать </Button>
+                        Command="{Binding Path=HandOver}"
+                        Visibility="{ Binding Path= IsHangOverAvailable, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
+                        >Передать</Button>
                 <Button Style="{StaticResource ActionButton}"
                         Visibility="{ Binding Path= IsCancelAvailable, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"> Отменить </Button>
                 <Button Style="{StaticResource ActionButton}"

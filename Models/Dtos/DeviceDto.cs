@@ -13,5 +13,6 @@ namespace Metrology.Models.Dtos
         public string SerialNumber { get; set; }
         public Location Location { get; set; }
         public PresenceStatus Status { get; set; }
+        public string FullDeviceName { get => Name + " - " + SerialNumber; }
     }
 }
