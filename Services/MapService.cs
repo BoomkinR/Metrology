@@ -11,7 +11,6 @@ namespace Metrology.Services
 {
     public class MapService
     {
-        private readonly DeviceService _deviceService = new DeviceService();
         
         public UserDto MapToUserDto(User user)
         {
@@ -41,6 +40,7 @@ namespace Metrology.Services
                 DateExplotationEnd = device.DateExplotationEnd,
                 SerialNumber = device.SerialNumber,
                 Location = device.Location,
+                OwnerUser = device.OwnerUser,
                 Status = device.Status
             };
         }
@@ -58,6 +58,33 @@ namespace Metrology.Services
                 SerialNumber = deviceDto.SerialNumber,
                 Location = deviceDto.Location,
                 Status = deviceDto.Status
+            };
+        }
+
+        public TransferLogDto MapToTransferLogDto(TransferLog transferLog)
+        {
+           return new TransferLogDto
+           {
+               ID = transferLog.ID,
+               UserFrom = transferLog.UserFrom,
+               UserTo = transferLog.UserTo,
+               Device = transferLog.Device,
+               Accepted = transferLog.Accepted != null && transferLog.Accepted.Value,
+               TransferDate = transferLog.TransferDate,
+               AcceptedDate = transferLog.AcceptedDate,
+               Note = transferLog.Note
+           };
+        }
+
+        public VerificationJournalDto MapToVerificationJournalDto(VerificationJournal verificationJournal)
+        {
+            return new VerificationJournalDto
+            {
+                Id = verificationJournal.ID,
+                Device = verificationJournal.Device,
+                Organization = verificationJournal.Organization,
+                IsDone = verificationJournal.IsDone,
+                VerificationDate = verificationJournal.VerificationDate
             };
         }
         

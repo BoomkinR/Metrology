@@ -12,8 +12,8 @@ namespace Metrology.Models
     public class DeviceType
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ID { get; set; }
+        public virtual int ID { get; set; }
         [Column("NAME")]
-        public string Name { get; set; }
+        public virtual string Name { get; set; }
     }
 }

@@ -18,7 +18,7 @@ namespace Metrology.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasDefaultSchema("metrology")
-                .HasAnnotation("ProductVersion", "6.0.1")
+                .HasAnnotation("ProductVersion", "6.0.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -190,6 +190,23 @@ namespace Metrology.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Metrology.Models.Organization", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text")
+                        .HasColumnName("Name");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("organizations", "metrology");
+                });
+
             modelBuilder.Entity("Metrology.Models.PresenceStatus", b =>
                 {
                     b.Property<int>("Id")
@@ -270,11 +287,11 @@ namespace Metrology.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
 
-                    b.Property<bool>("Accepted")
+                    b.Property<bool?>("Accepted")
                         .HasColumnType("boolean")
                         .HasColumnName("ACCEPTED");
 
-                    b.Property<DateTime>("AcceptedDate")
+                    b.Property<DateTime?>("AcceptedDate")
                         .HasColumnType("TIMESTAMP(0)")
                         .HasColumnName("ACCEPTED_DATE");
 
@@ -285,7 +302,7 @@ namespace Metrology.Migrations
                         .HasColumnType("text")
                         .HasColumnName("NOTE");
 
-                    b.Property<DateTime>("TransferDate")
+                    b.Property<DateTime?>("TransferDate")
                         .HasColumnType("TIMESTAMP(0)")
                         .HasColumnName("TRANSFER_DATE");
 
@@ -363,16 +380,47 @@ namespace Metrology.Migrations
                         new
                         {
                             ID = 1,
-                            BirthDay = new DateTime(2022, 3, 13, 17, 14, 52, 77, DateTimeKind.Local).AddTicks(5554),
+                            BirthDay = new DateTime(2022, 3, 26, 18, 1, 57, 102, DateTimeKind.Local).AddTicks(5906),
                             Email = "admin@admin.ru",
                             Login = "admin",
                             Name = "Admin",
                             Password = "�iv�A���M�߱g��s�K��o*�H�",
                             PatrName = "Adminov",
                             Phone = "88888888888",
-                            RegistrationDate = new DateTime(2022, 3, 13, 17, 14, 52, 77, DateTimeKind.Local).AddTicks(5563),
+                            RegistrationDate = new DateTime(2022, 3, 26, 18, 1, 57, 102, DateTimeKind.Local).AddTicks(5916),
                             Surname = "Adminovich"
                         });
+                });
+
+            modelBuilder.Entity("Metrology.Models.VerificationJournal", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
+
+                    b.Property<int?>("DeviceId")
+                        .HasColumnType("integer");
+
+                    b.Property<bool>("IsDone")
+                        .HasColumnType("boolean")
+                        .HasColumnName("IS_DONE");
+
+                    b.Property<int?>("OrganizationID")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("VerificationDate")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("VERIFICATION_DATE");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("DeviceId");
+
+                    b.HasIndex("OrganizationID");
+
+                    b.ToTable("verification_journal", "metrology");
                 });
 
             modelBuilder.Entity("Metrology.Models.Device", b =>
@@ -441,6 +489,21 @@ namespace Metrology.Migrations
                         .HasForeignKey("RoleId");
 
                     b.Navigation("Role");
+                });
+
+            modelBuilder.Entity("Metrology.Models.VerificationJournal", b =>
+                {
+                    b.HasOne("Metrology.Models.Device", "Device")
+                        .WithMany()
+                        .HasForeignKey("DeviceId");
+
+                    b.HasOne("Metrology.Models.Organization", "Organization")
+                        .WithMany()
+                        .HasForeignKey("OrganizationID");
+
+                    b.Navigation("Device");
+
+                    b.Navigation("Organization");
                 });
 #pragma warning restore 612, 618
         }

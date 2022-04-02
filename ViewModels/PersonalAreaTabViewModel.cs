@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Metrology.Definitions;
 using Metrology.Models;
 using Metrology.Models.Dtos;
@@ -16,8 +17,8 @@ namespace Metrology.ViewModels
             UpdateUsersList();
         }
 
-        private IEnumerable<UserDto> users;
-        public IEnumerable<UserDto> Users
+        private List<UserDto> users;
+        public List<UserDto> Users
         {
             get => users;
             set
@@ -27,8 +28,8 @@ namespace Metrology.ViewModels
             }
         }
 
-        private User selectedUsers;
-        public User SelectedUsers
+        private UserDto selectedUsers;
+        public UserDto SelectedUsers
         {
             get => selectedUsers;
             set
@@ -54,6 +55,61 @@ namespace Metrology.ViewModels
         {
             WindowService windowService = new WindowService();
             windowService.ShowAddUserView();
+            UpdateUsersList();
+        }
+
+        private RelayCommand addRole { get; set; }
+
+        public RelayCommand AddRole
+        {
+            get
+            {
+                return addRole ??
+                       (addRole = new RelayCommand(obj => AddRoleCommand()));
+            }
+        }
+        
+        private RelayCommand addOrganization { get; set; }
+
+        public RelayCommand AddOrganization
+        {
+            get
+            {
+                return addOrganization ??
+                       (addOrganization = new RelayCommand(obj => AddOrganizationCommand()));
+            }
+        }
+        
+        private RelayCommand addLocation { get; set; }
+
+        public RelayCommand AddLocation
+        {
+            get
+            {
+                return addLocation ??
+                       (addLocation = new RelayCommand(obj => AddLocationCommand()));
+            }
+        }
+
+        private void AddLocationCommand()
+        {
+            WindowService windowService = new WindowService();
+            windowService.ShowAddLocalizationView();
+            UpdateUsersList();
+        }
+
+        private void AddOrganizationCommand()
+        {
+            WindowService windowService = new WindowService();
+            windowService.ShowAddOrganizationView();
+            UpdateUsersList();
+        }
+
+
+        private void AddRoleCommand()
+        {
+            WindowService windowService = new WindowService();
+            windowService.ShowAddRoleView();
             UpdateUsersList();
         }
 

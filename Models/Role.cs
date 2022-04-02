@@ -8,10 +8,10 @@ namespace Metrology.Models
     public class Role
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity), Column("ID")]     
-        public int Id { get; set; }
+        public virtual int Id { get; set; }
         [Column("NAME")]
-        public string Name { get; set; }
+        public virtual string Name { get; set; }
         [Column("PREVILEGIES")]
-        public int Privelegies { get; set; }
+        public virtual int Privelegies { get; set; }
     }
 }

@@ -2,7 +2,6 @@
 using Metrology.Models.Dtos;
 using Metrology.Services;
 using Metrology.Services.ModelService;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -12,6 +11,7 @@ namespace Metrology.ViewModels
     {
         private readonly DeviceService _deviceService = new DeviceService();
         private readonly WindowService _windowService = new WindowService();
+        private readonly TransferLogService _transferLogService = TransferLogService.GetInstance();
         public InstrumentViewModel()
         {
             UpdateDevices();
@@ -103,10 +103,34 @@ namespace Metrology.ViewModels
         {
             get { return handOver ?? (handOver = new RelayCommand(obj => OnHandOver())); }
         }
+        private RelayCommand cancelTransfer { get; set; }
+        public RelayCommand CancelTransfer
+        {
+            get { return cancelTransfer ?? (cancelTransfer = new RelayCommand(obj => OnCancelTransfer())); }
+        }
+
+        private RelayCommand receiveTransfer { get; set; }
+        public RelayCommand ReceiveTransfer
+        {
+            get { return receiveTransfer ?? (receiveTransfer = new RelayCommand(obj => OnReceiveTransfer())); }
+        }
+
+        private void OnReceiveTransfer()
+        {
+            _transferLogService.ReceiveActualTransfer(SelectedDevice.Id);
+            UpdateDevices();
+        }
+
+        private void OnCancelTransfer()
+        {
+            _transferLogService.CancelActualTransfer(SelectedDevice.Id);
+            SetButtonVisible();
+        }
 
         private void OnHandOver()
         {
             _windowService.ShowHandOverModalView(SelectedDevice);
+            SetButtonVisible();
         }
 
         private void OnAddDevice() 
@@ -118,7 +142,9 @@ namespace Metrology.ViewModels
 
         private void UpdateDevices()
         {
-            Devices = _deviceService.GetAllDevices();
+            var selectedDeviceId = SelectedDevice?.Id;
+            Devices = _deviceService.GetAllDevicesForUser();
+            SelectedDevice = Devices.FirstOrDefault(x => x.Id == selectedDeviceId);
         }
 
         private void SetButtonVisible()
@@ -127,10 +153,28 @@ namespace Metrology.ViewModels
             {
                 return;
             }
-            IsHangOverAvailable = SelectedDevice.Status?.Id == 1;
-            IsCancelAvailable = SelectedDevice.Status?.Id == 0;
-            IsRecieveAvailable = SelectedDevice.Status?.Id == 0;
+            var actualLog = _transferLogService.GetLastTransferLogDtoBy(SelectedDevice.Id);
+            var isAvailableToHandOverDevice = IsAvailableToHandOverDevice();
+
+            if (actualLog == null)
+            {
+                IsHangOverAvailable = isAvailableToHandOverDevice;
+                IsCancelAvailable = false;
+                IsRecieveAvailable = false;
+                IsTransportAvailable = SelectedDevice.Status?.Id == 1;
+                return;
+            }
+            
+            var isDeviceWaitingAccept = !actualLog.Accepted;
+            IsHangOverAvailable = isAvailableToHandOverDevice && !isDeviceWaitingAccept;
+            IsCancelAvailable = isAvailableToHandOverDevice && isDeviceWaitingAccept;
+            IsRecieveAvailable = actualLog.UserTo.ID == LoginService.CurrentUser.ID && isDeviceWaitingAccept;
             IsTransportAvailable = SelectedDevice.Status?.Id == 1;
+        }
+
+        private bool IsAvailableToHandOverDevice()
+        {
+            return SelectedDevice.OwnerUser.ID == LoginService.CurrentUser.ID;
         }
     }
 }

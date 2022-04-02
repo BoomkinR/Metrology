@@ -13,27 +13,27 @@ namespace Metrology.Models
     {
 
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public virtual int Id { get; set; }
         [Column("NAME"), Required]
-        public string Name { get; set; }
+        public virtual string Name { get; set; }
         [Column("DEVICE_TYPE"), Required]
-        public DeviceType Type { get; set; }
+        public virtual DeviceType Type { get; set; }
         [Column("DEVICE_DATE")]
-        public DateTime DeviceDate { get; set; }
+        public virtual DateTime DeviceDate { get; set; }
         [Column("DATE_EXPLOTATION_START")]
-        public DateTime DateExplotationStart { get; set; }
+        public virtual DateTime DateExplotationStart { get; set; }
         
         [Column("DATE_EXPLOTATION_END")]        
-        public DateTime DateExplotationEnd { get; set; }
+        public virtual DateTime DateExplotationEnd { get; set; }
 
         [Column("SERIAL_NUMBER")]
-        public string SerialNumber { get; set; }
+        public virtual string SerialNumber { get; set; }
         [Column("LOCATION")]
-        public Location Location { get; set; }
+        public virtual Location Location { get; set; }
         [Column("PRESENCE_STATUS")]
-        public PresenceStatus Status { get; set; }
+        public virtual PresenceStatus Status { get; set; }
         [Column("OWNER_USER")]
-        public User OwnerUser { get; set; }
+        public virtual User OwnerUser { get; set; }
 
     }
 }

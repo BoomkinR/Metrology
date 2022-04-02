@@ -4,11 +4,20 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Metrology.Views"
+             xmlns:viewModels="clr-namespace:Metrology.ViewModels"
+             xmlns:dtos="clr-namespace:Metrology.Models.Dtos"
              mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance viewModels:VerificationScheduleTabViewModel}"
              d:DesignHeight="450" d:DesignWidth="1200" Background="White">
     <Grid>
         <Grid.Resources>
             <ResourceDictionary>
+                <Style TargetType="Button"
+                       x:Key="ActionButton">
+                    <Setter Property="Width" Value="200"/>
+                    <Setter Property="Height" Value="30"/>
+                    <Setter Property="Margin" Value="10"/>
+                </Style>
             </ResourceDictionary>
         </Grid.Resources>
         <Grid.RowDefinitions>
@@ -29,39 +38,43 @@
                 <TextBlock HorizontalAlignment="Center" Text="Прибор"/>
                 <ComboBox />
             </StackPanel>
+            <StackPanel Margin="15" Orientation="Vertical"  Width="120">
+                <Button Command="{Binding Path=RefreshCommand}" >Обновить</Button>
+            </StackPanel>
         </StackPanel>
 
         <DataGrid RowHeight="35" 
                   Grid.Row="1"
+                  ItemsSource="{Binding Path=VerificationItems}"
                   AutoGenerateColumns="False"
-                  SelectionMode="Single"
+                  SelectionMode="Single" 
                   SelectionUnit="FullRow"
                   IsSynchronizedWithCurrentItem="True">
 
             
             <DataGrid.Columns>
-        <DataGridTemplateColumn Width="*">
+        <DataGridTemplateColumn Width="*" >
             <DataGridTemplateColumn.Header>
                 <TextBlock Text = "ID" TextWrapping="Wrap" HorizontalAlignment="Center" ></TextBlock>
             </DataGridTemplateColumn.Header>
             <DataGridTemplateColumn.CellTemplate>
-                <DataTemplate >
+                <DataTemplate DataType="dtos:VerificationJournalDto">
                     <StackPanel Orientation="Horizontal">
-                            <TextBlock  HorizontalAlignment="Center"
-                                        Text="No"/>
+                            <TextBlock  HorizontalAlignment="Center" Text="{Binding Path=Id}"/>
                         </StackPanel>
                 </DataTemplate>
             </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn >
+        </DataGridTemplateColumn >
+                
                 <DataGridTemplateColumn Width="*">
                 <DataGridTemplateColumn.Header>
                     <TextBlock Text = "Наименование, тип, номер" TextWrapping="Wrap" HorizontalAlignment="Center" ></TextBlock>
                 </DataGridTemplateColumn.Header>
                 <DataGridTemplateColumn.CellTemplate>
-                    <DataTemplate >
+                    <DataTemplate DataType="dtos:VerificationJournalDto">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock  HorizontalAlignment="Center"
-                                        Text="No"/>
+                                        Text="{Binding Path = Device.Name, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
                     </DataTemplate>
                 </DataGridTemplateColumn.CellTemplate>
@@ -69,41 +82,41 @@
 
                 <DataGridTemplateColumn Width="*">
                 <DataGridTemplateColumn.Header>
-                    <TextBlock Text = "Класс точности, погрешность" TextWrapping="Wrap" HorizontalAlignment="Center" ></TextBlock>
+                    <TextBlock Text = "Дата поверки" TextWrapping="Wrap" HorizontalAlignment="Center" ></TextBlock>
                 </DataGridTemplateColumn.Header>
                 <DataGridTemplateColumn.CellTemplate>
-                    <DataTemplate >
+                    <DataTemplate DataType="dtos:VerificationJournalDto">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock  HorizontalAlignment="Center"
-                                        Text="No"/>
+                                        Text="{Binding Path = VerificationDate, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
                     </DataTemplate>
                 </DataGridTemplateColumn.CellTemplate>
             </DataGridTemplateColumn>
 
-                <DataGridTemplateColumn Width="*">
-                    <DataGridTemplateColumn.Header>
-                        <TextBlock Text = "Кол-во" TextWrapping="Wrap" HorizontalAlignment="Center" ></TextBlock>
-                    </DataGridTemplateColumn.Header>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate >
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock  HorizontalAlignment="Center"
-                                        Text="No"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+                <!-- <DataGridTemplateColumn Width="*"> -->
+                <!--     <DataGridTemplateColumn.Header> -->
+                <!--         <TextBlock Text = "Кол-во" TextWrapping="Wrap" HorizontalAlignment="Center" ></TextBlock> -->
+                <!--     </DataGridTemplateColumn.Header> -->
+                <!--     <DataGridTemplateColumn.CellTemplate> -->
+                <!--         <DataTemplate DataType="dtos:DeviceDto"> -->
+                <!--             <StackPanel Orientation="Horizontal"> -->
+                <!--                 <TextBlock  HorizontalAlignment="Center" -->
+                <!--                         Text="No"/> -->
+                <!--             </StackPanel> -->
+                <!--         </DataTemplate> -->
+                <!--     </DataGridTemplateColumn.CellTemplate> -->
+                <!-- </DataGridTemplateColumn> -->
 
                 <DataGridTemplateColumn Width="*">
                     <DataGridTemplateColumn.Header>
                         <TextBlock Text = "Номер СИ в гос. реестре" TextWrapping="Wrap" HorizontalAlignment="Center" ></TextBlock>
                     </DataGridTemplateColumn.Header>
                     <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate >
+                        <DataTemplate DataType="dtos:VerificationJournalDto" >
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock  HorizontalAlignment="Center"
-                                        Text="No"/>
+                                        Text="{Binding Path = Device.SerialNumber}"/>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -114,10 +127,10 @@
                         <TextBlock Text = "Поверяющая организация" TextWrapping="Wrap" HorizontalAlignment="Center" ></TextBlock>
                     </DataGridTemplateColumn.Header>
                     <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate >
+                        <DataTemplate DataType="dtos:VerificationJournalDto">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock  HorizontalAlignment="Center"
-                                        Text="No"/>
+                                        Text="{Binding Path=Organization.Name}"/>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -131,7 +144,7 @@
                         <DataTemplate >
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock  HorizontalAlignment="Center"
-                                        Text="No"/>
+                                        Text="неизвестно"/>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -142,10 +155,10 @@
                         <TextBlock Text = "Сфера гос. регулирования" TextWrapping="Wrap" HorizontalAlignment="Center" ></TextBlock>
                     </DataGridTemplateColumn.Header>
                     <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate >
+                        <DataTemplate DataType="dtos:DeviceDto">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock  HorizontalAlignment="Center"
-                                        Text="No"/>
+                                        Text="неизвестно"/>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>

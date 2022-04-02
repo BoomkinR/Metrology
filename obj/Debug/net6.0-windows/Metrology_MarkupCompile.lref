@@ -1,9 +1,11 @@
 ﻿
 
 FD:\Metrology\Metrology\MetrologyStartApp.xaml;;
-FD:\Metrology\Metrology\Views\AddDeviceModalView.xaml;;
-FD:\Metrology\Metrology\Views\AddRoleView.xaml;;
-FD:\Metrology\Metrology\Views\AddUserView.xaml;;
+FD:\Metrology\Metrology\Views\AddViews\AddDeviceModalView.xaml;;
+FD:\Metrology\Metrology\Views\AddViews\AddLocationModelView.xaml;;
+FD:\Metrology\Metrology\Views\AddViews\AddOrganizationsModalView.xaml;;
+FD:\Metrology\Metrology\Views\AddViews\AddRoleView.xaml;;
+FD:\Metrology\Metrology\Views\AddViews\AddUserView.xaml;;
 FD:\Metrology\Metrology\Views\Authorization.xaml;;
 FD:\Metrology\Metrology\Views\HandOverModalView.xaml;;
 FD:\Metrology\Metrology\Views\InstrumentTabItemView.xaml;;

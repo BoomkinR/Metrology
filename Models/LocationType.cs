@@ -7,8 +7,8 @@ namespace Metrology.Models
     public class LocationType
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public virtual int Id { get; set; }
         [Column("NAME")]
-        public string Name { get; set; }
+        public virtual string Name { get; set; }
     }
 }

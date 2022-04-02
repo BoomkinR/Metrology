@@ -11,7 +11,7 @@
     <VerifyUploadedFiles>false</VerifyUploadedFiles>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Update="Views\AddRoleView.xaml.cs">
+    <Compile Update="Views\AddViews\AddRoleView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Authorization.xaml.cs">
@@ -28,10 +28,10 @@
     <Page Update="Definitions\MetrologDictionary.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\AddRoleView.xaml">
+    <Page Update="Views\AddViews\AddRoleView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\AddDeviceModalView.xaml">
+    <Page Update="Views\AddViews\AddDeviceModalView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Authorization.xaml">

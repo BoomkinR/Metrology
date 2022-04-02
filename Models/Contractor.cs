@@ -12,16 +12,14 @@ namespace Metrology.Models
     public class Contractor
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ID { get; set; }
+        public virtual int ID { get; set; }
         [Column("ORGANISATION_NAME")]
-        public string OrganisationName { get; set; }
+        public virtual string OrganisationName { get; set; }
         [Column("INN")]
-        public string Inn { get; set; }
+        public virtual string Inn { get; set; }
         [Column("CONTACT_CLIENT")]
-        public string ContactClient { get; set; }
+        public virtual string ContactClient { get; set; }
         [Column("CONTACT_NUMBER")]
-        public string ContactNumper { get; set; }
-
-
+        public virtual string ContactNumper { get; set; }
     }
 }

@@ -54,11 +54,12 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Примечание: "/>
-                <TextBox />
+                <TextBox Text="{Binding Path=Note}"/>
             </StackPanel>            
         </StackPanel>
         <StackPanel HorizontalAlignment="Right" Grid.Row="1" Orientation="Horizontal">
-            <Button Style="{StaticResource ActionButton}">Передать</Button>
+            <Button Style="{StaticResource ActionButton}"
+                    Command="{Binding Path=HandOverDeviceCommand}">Передать</Button>
             <Button Style="{StaticResource ActionButton}"
                     Command="{Binding Path=CloseCommand}">Отмена</Button>
         </StackPanel>

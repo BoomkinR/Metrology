@@ -56,24 +56,52 @@
             <Button Style="{StaticResource AddButtons}" Command="{Binding AddUser}">
                 Добавить пользователя 
             </Button>
-            <Button Style="{StaticResource AddButtons}" Command="{Binding AddUser}">
+            <Button Style="{StaticResource AddButtons}" Command="{Binding AddRole}">
                 Добавить Роль
+            </Button>
+            <Button Style="{StaticResource AddButtons}" Command="{Binding AddOrganization }">
+                Добавить организацию
+            </Button>
+            <Button Style="{StaticResource AddButtons}" Command="{Binding }">
+                Добавить локацию
+            </Button>
+            <Button Style="{StaticResource AddButtons}" Command="{Binding }">
+                Добавить Тип СИ
+            </Button>
+            <Button Style="{StaticResource AddButtons}" Command="{Binding }">
+                Добавить тип локации
             </Button>
         </StackPanel>
         <ScrollViewer Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" Margin="5">
             <ListBox ItemsSource="{Binding Path=Users}"
-                     SelectedItem="{Binding Path=SelectedUsers}"
+                     SelectedItem="{Binding Path=SelectedUsers, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                      DisplayMemberPath="Name"/>
         </ScrollViewer>
         <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Vertical">
             <TextBlock Text="Информация о пользователе"/>
             <StackPanel Orientation="Horizontal" Style="{StaticResource InfoItem}">
                 <TextBlock Style="{StaticResource InfoTextBlock}" Text="Дата рождения : " VerticalAlignment="Bottom"/>
-                <DatePicker SelectedDate ="{Binding Path=SelectedUsers.BirthDay}" />
+                <DatePicker SelectedDate ="{Binding Path=SelectedUsers.BirthDay, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" Style="{StaticResource InfoItem}">
                 <TextBlock Style="{StaticResource InfoTextBlock}" Text="Телефон: " VerticalAlignment="Bottom"/>
-                <TextBox Text ="{Binding Path=SelectedUsers.Phone}" Style="{StaticResource InfoTextBox}"/>
+                <TextBox Text ="{Binding Path=SelectedUsers.Phone, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource InfoTextBox}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Style="{StaticResource InfoItem}">
+                <TextBlock Style="{StaticResource InfoTextBlock}" Text="Фамилия: " VerticalAlignment="Bottom"/>
+                <TextBox Text ="{Binding Path=SelectedUsers.Surname, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource InfoTextBox}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Style="{StaticResource InfoItem}">
+                <TextBlock Style="{StaticResource InfoTextBlock}" Text="Имя: " VerticalAlignment="Bottom"/>
+                <TextBox Text ="{Binding Path=SelectedUsers.Name, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource InfoTextBox}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Style="{StaticResource InfoItem}">
+                <TextBlock Style="{StaticResource InfoTextBlock}" Text="Отчестволия: " VerticalAlignment="Bottom"/>
+                <TextBox Text ="{Binding Path=SelectedUsers.PatrName, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource InfoTextBox}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Style="{StaticResource InfoItem}">
+                <TextBlock Style="{StaticResource InfoTextBlock}" Text="Дата регистрации: " VerticalAlignment="Bottom"/>
+                <TextBox Text ="{Binding Path=SelectedUsers.RegistrationDate, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource InfoTextBox}"/>
             </StackPanel>
         </StackPanel>
 

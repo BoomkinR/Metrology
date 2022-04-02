@@ -151,9 +151,13 @@
                         Visibility="{ Binding Path= IsHangOverAvailable, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
                         >Передать</Button>
                 <Button Style="{StaticResource ActionButton}"
-                        Visibility="{ Binding Path= IsCancelAvailable, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"> Отменить </Button>
+                        Command="{Binding Path=CancelTransfer}"
+                        Visibility="{ Binding Path= IsCancelAvailable, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
+                        > Отменить </Button>
                 <Button Style="{StaticResource ActionButton}"
-                        Visibility="{ Binding Path= IsRecieveAvailable, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"> Получить </Button>
+                        Command="{Binding Path=ReceiveTransfer}"
+                        Visibility="{ Binding Path= IsRecieveAvailable, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
+                        > Получить </Button>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Button

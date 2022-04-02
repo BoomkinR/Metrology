@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 D:\Metrology\Metrology\App.xaml
-10680109069
+12-1460058876
 
-50763149114
-236-331387813
-Definitions\MetrologDictionary.xaml;MetrologyStartApp.xaml;Views\AddDeviceModalView.xaml;Views\AddRoleView.xaml;Views\AddUserView.xaml;Views\Authorization.xaml;Views\HandOverModalView.xaml;Views\InstrumentTabItemView.xaml;Views\PersonalAreaTabView.xaml;Views\VerificationScheduleTabView.xaml;
+681604557311
+238-1950969183
+Definitions\MetrologDictionary.xaml;MetrologyStartApp.xaml;Views\AddViews\AddDeviceModalView.xaml;Views\AddViews\AddLocationModelView.xaml;Views\AddViews\AddOrganizationsModalView.xaml;Views\AddViews\AddRoleView.xaml;Views\AddViews\AddUserView.xaml;Views\Authorization.xaml;Views\HandOverModalView.xaml;Views\InstrumentTabItemView.xaml;Views\PersonalAreaTabView.xaml;Views\VerificationScheduleTabView.xaml;
 
 False
 

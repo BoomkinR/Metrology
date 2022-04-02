@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Metrology.ViewModels
 {
-    internal class Layout
+    public class Layout
     {
          public Layout()
         {
@@ -12,13 +12,15 @@ namespace Metrology.ViewModels
             InitViewModels();
         }
 
-        public PersonalAreaTabViewModel personalAreaTabViewModel { get; set; }
-        public InstrumentViewModel instrumentViewModel { get; set; }
+        public PersonalAreaTabViewModel PersonalAreaTabViewModel { get; set; }
+        public InstrumentViewModel InstrumentViewModel { get; set; }
+        public VerificationScheduleTabViewModel VerificationScheduleTabViewModel { get; set; }
 
         private void InitViewModels()
         {
-            personalAreaTabViewModel = new PersonalAreaTabViewModel();
-            instrumentViewModel = new InstrumentViewModel();
+            PersonalAreaTabViewModel = new PersonalAreaTabViewModel();
+            InstrumentViewModel = new InstrumentViewModel();
+            VerificationScheduleTabViewModel = new VerificationScheduleTabViewModel();
         }
 
     }

@@ -8,20 +8,20 @@ namespace Metrology.Models
     public class TransferLog
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ID { get; set; }
+        public virtual int ID { get; set; }
         [Column("USER_FROM")]
-        public User UserFrom { get; set; }
+        public virtual User UserFrom { get; set; }
         [Column("USER_TO")]
-        public User UserTo { get; set; }
+        public virtual User UserTo { get; set; }
         [Column("DEVICE")]
-        public Device Device { get; set; }
+        public virtual Device Device { get; set; }
         [Column("ACCEPTED")]
-        public bool Accepted { get; set; }
+        public virtual bool? Accepted { get; set; }
         [Column("TRANSFER_DATE")]
-        public DateTime TransferDate { get; set; }
+        public virtual DateTime? TransferDate { get; set; }
         [Column("ACCEPTED_DATE")]
-        public DateTime AcceptedDate { get; set; }
+        public virtual DateTime? AcceptedDate { get; set; }
         [Column("NOTE")]
-        public string Note { get; set; }
+        public virtual string Note { get; set; }
     }
 }

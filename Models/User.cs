@@ -8,26 +8,26 @@ namespace Metrology.Models
     public class User
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ID { get; set; }
+        public virtual int ID { get; set; }
         [Column("NAME")]
-        public string Name { get; set; }
+        public virtual string Name { get; set; }
         [Column("SURNAME")]
-        public string Surname { get; set; }
+        public virtual string Surname { get; set; }
         [Column("PATRTNAME")]
-        public string PatrName { get; set; }
+        public virtual string PatrName { get; set; }
         [Column("EMAIL")]
-        public string Email { get; set; }
+        public virtual string Email { get; set; }
         [Column("BIRTHDAY")]
-        public DateTime BirthDay { get; set; }
+        public virtual DateTime BirthDay { get; set; }
         [Column("REGISTRATION_DATE")]
-        public DateTime RegistrationDate { get; set;}
+        public virtual DateTime RegistrationDate { get; set;}
         [Column("PHONE")]
-        public string Phone { get; set; }
+        public virtual string Phone { get; set; }
         [Column("LOGIN")]
-        public string Login { get; set; }
+        public virtual string Login { get; set; }
         [Column("PASSWORD")]
-        public string Password { get; set; }
+        public virtual string Password { get; set; }
         [Column("ROLE")]
-        public Role Role { get; set; }
+        public virtual Role Role { get; set; }
     }
 }

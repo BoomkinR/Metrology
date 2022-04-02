@@ -1,6 +1,8 @@
 ﻿using Metrology.Definitions;
 using Metrology.Models.Dtos;
+using Metrology.Services;
 using Metrology.Services.ModelService;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -28,18 +30,16 @@ namespace Metrology.ViewModels
                 OnPropertyChanged(nameof(DeviceDto));
             }
         }
-
-        private UserDto userTo;
-        public UserDto UserTo
-        {
-            get => userTo;
+        private string note;
+        public string Note { get => note;
             set
             {
-                userTo = value;
-                OnPropertyChanged(nameof(UserTo));
+                note = value;
+                OnPropertyChanged(nameof(Note));
             }
         }
 
+       
         private IEnumerable<UserDto> userList;
         public IEnumerable<UserDto> UserList
         {
@@ -62,5 +62,22 @@ namespace Metrology.ViewModels
             }
         }
 
+        private RelayCommand handOverDeviceCommand;
+
+        public RelayCommand HandOverDeviceCommand
+        {
+            get
+            {
+                return handOverDeviceCommand ??
+                       (handOverDeviceCommand = new RelayCommand(obj => HandOverDevice()));
+            }
+        }
+
+        private void HandOverDevice()
+        {
+            var transferLogService = TransferLogService.GetInstance();
+            transferLogService.HandOverDeviceWithAccept(DeviceDto.Id, SelectedUser.ID,Note);  
+            CloseWindow();
+        }
     }
 }

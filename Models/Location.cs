@@ -8,13 +8,13 @@ namespace Metrology.Models
     {
 
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ID { get; set; }
+        public virtual int ID { get; set; }
         [Column("REGION")]
-        public string Region { get; set; }
+        public virtual string Region { get; set; }
         [Column("NAME")]
-        public string Name { get; set; }
+        public virtual string Name { get; set; }
         [Column("LOCATION_TYPE_ID")]
-        public LocationType LocationType { get; set; }
+        public virtual LocationType LocationType { get; set; }
 
     }
 }

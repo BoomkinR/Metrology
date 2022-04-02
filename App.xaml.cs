@@ -11,7 +11,6 @@ namespace Metrology
     {
         public void ApplicationStartup(object sender, StartupEventArgs args)
         {
-            Layout layout = new Layout();
             var window = new Authorization();  
             window.DataContext = new AuthorizationViewModel();
             window.Show();

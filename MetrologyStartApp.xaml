@@ -11,13 +11,13 @@
         Title="MainWindow" Height="720" Width="1080">
     <Grid>
         <TabControl TabStripPlacement="Top">
-            <TabItem DataContext="{Binding Path=personalAreaTabViewModel}" Header="Административная Панель">
+            <TabItem DataContext="{Binding Path=PersonalAreaTabViewModel}" Header="Административная Панель">
                 <views:PersonalAreaTabView />
             </TabItem>
-            <TabItem DataContext="{Binding Path= instrumentViewModel}" Header="Средства измерения">
+            <TabItem DataContext="{Binding Path= InstrumentViewModel}" Header="Средства измерения">
                 <views:InstrumentTabItem/>
             </TabItem>
-            <TabItem Header="Граффик поверки">
+            <TabItem Header="Граффик поверки" DataContext="{Binding Path= VerificationScheduleTabViewModel}">
                 <views:VerificationScheduleTabView/>
             </TabItem>
             <TabItem Header="Ремонтный граффик">               
